@@ -22,3 +22,7 @@ Outputs all the exams that happened or will happen depending on the given month
 
 Work in progress 
 Subject to change 
+
+
+
+This bot is open source and you are allowed to adjust it for your needs. To configure and use this bot all you need is addidtional json file called ./config.json with the token variable of your applciation bot, along side UserID and ClientID. For data comming from our faculty you will need to configure FINdata.py file with new or existing code for scraping the website of your desire, if you decide to do so, you can also add username/password in ./config.json file used for automatic login to the server. 
