@@ -1,4 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
+const Database = require("@replit/database")
+const db = new Database()
 
 // const ExamChecker = require("../predmeti.js");
 
@@ -8,6 +10,8 @@ const { SlashCommandBuilder } = require("discord.js");
 // PythonShell.run("FINdata.py", null, function (err, results) {
 //   console.log(results);
 // });
+
+// Change Username/Password when initializing the project
 
 module.exports = {
   // Slash Command for taking the time of the Exam
@@ -28,13 +32,14 @@ module.exports = {
     ),
 
   async execute(interaction) {
-    let NameOfExam = string(interaction.options.getString("ispit")); // User input lol
-    let TimeOfExam = string(interaction.options.getString("vreme_ispita")); // User input lol
-
+    let NameOfExam = interaction.options.getString("ispit"); // User input lol
+    let TimeOfExam = interaction.options.getString("vreme_ispita"); // User input lol
+    db.set(NameOfExam, TimeOfExam).then(() => { });
     // Offical Date YYYY-MM-DD
     // Expected Date DD-MM-YYYY
-    if (!dateIsValid(new Date(transformDate(TimeOfExam)))) return 0;
-
+    // if (!dateIsValid(new Date(transformDate(TimeOfExam)))) return 0;
+    db.list().then(keys => console.log(keys))
+ db.get(NameOfExam).then(value=>console.log(value));
     await interaction.reply(`${examChecker(NameOfExam)}`);
   },
 };
@@ -90,10 +95,14 @@ function dateIsValid(date) {
 }
 
 // Transforms Date to official 8601 format
+
+// Check if date has passed
 function transformDate(date) {
   if (date.length > 10) return false;
+
   const day = date.slice(0, 2);
   const month = date.slice(3, 5);
   const year = date.slice(6);
+
   date = year + "-" + month + "-" + day;
 }
