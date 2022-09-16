@@ -35,12 +35,16 @@ module.exports = {
     let NameOfExam = interaction.options.getString("ispit"); // User input lol
     let TimeOfExam = interaction.options.getString("vreme_ispita"); // User input lol
     db.set(NameOfExam, TimeOfExam).then(() => { });
+
+
     // Offical Date YYYY-MM-DD
     // Expected Date DD-MM-YYYY
     // if (!dateIsValid(new Date(transformDate(TimeOfExam)))) return 0;
+
+
     db.list().then(keys => console.log(keys))
- db.get(NameOfExam).then(value=>console.log(value));
-    await interaction.reply(`${examChecker(NameOfExam)}`);
+    db.get(NameOfExam).then(value => console.log(value));
+    await interaction.reply(`${examChecker(NameOfExam)}, ${TimeOfExam}`);
   },
 };
 
