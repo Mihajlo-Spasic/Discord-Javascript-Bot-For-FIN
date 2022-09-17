@@ -19,7 +19,7 @@ async function ExamList(interaction) {
 
     for (let i = 0; i < keys.length; i++) {
       E_date = await db.get(keys[i]).then(value => value)
-      E_list += `${keys[0]} datuma: ${E_date} \n`
+      E_list += `${keys[i]} datuma: ${E_date} \n`
     }
   })
   await interaction.reply(E_list)
