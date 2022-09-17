@@ -17,8 +17,12 @@ module.exports = {
 
     db.list().then(keys => {
       console.log(keys)
-      keys.forEach(element => {
-        root(interaction, element, ExamToDelete);
+      keys.forEach(async (element) => {
+        if (keys.includes(ExamToDelete)) {
+          root(interaction, element, ExamToDelete);
+        }
+        else
+          await interaction.reply('Nema takvog ispita')
       })
     })
 
@@ -30,6 +34,4 @@ async function root(interaction, element, exam) {
     db.delete(exam).then(() => { })
     await interaction.reply("Ispit izbrisan")
   }
-  else
-    await interaction.reply('Nema takvog ispita')
 }
