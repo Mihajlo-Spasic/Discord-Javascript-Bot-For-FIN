@@ -5,6 +5,6 @@ module.exports = {
     .setName("father")
     .setDescription("Replies with the creator's name"),
   async execute(interaction) {
-    await interaction.reply("Mihajlo Spasic");
+    await interaction.reply("Mihajlo Spasic \n (╯°□°）╯︵ ┻━┻");
   },
 };

@@ -15,18 +15,17 @@ module.exports = {
   async execute(interaction) {
     const ExamToDelete = interaction.options.getString('ispit');
 
-    db.list().then(keys => {
-      console.log(keys)
-      keys.forEach(async (element) => {
-        if (keys.includes(ExamToDelete)) {
+    db.list().then(async(keys) => {
+      if (keys.includes(ExamToDelete)) {
+        keys.forEach(async (element) => {   
           root(interaction, element, ExamToDelete);
-        }
+          })
+       }
         else
           await interaction.reply('Nema takvog ispita')
       })
-    })
+    }
 
-  }
 }
 
 async function root(interaction, element, exam) {
