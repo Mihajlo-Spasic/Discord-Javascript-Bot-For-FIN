@@ -2,11 +2,9 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 // const { token } = require("./config.json");
-const keepAlive = require("./server")
-const token = process.env['token']
+const keepAlive = require("./server");
+const token = process.env.token;
 const { REST } = require("@discordjs/rest");
-
-
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -54,7 +52,6 @@ client.on("interactionCreate", async (interaction) => {
     });
   }
 });
-
 
 keepAlive();
 client.login(token);
