@@ -1,0 +1,21 @@
+Start of Reported Error That Occured at Thu, 29 Sep 2022 16:56:37 GMT 
+Error: ER_TRUNCATED_WRONG_VALUE: Incorrect datetime value: 'Thu, 29 Sep 2022 16:56:37 GMT' for column 'date' at row 1
+End of Reported Error
+Start of Reported Error That Occured at Thu, 29 Sep 2022 21:32:52 GMT 
+Error: ER_DATA_TOO_LONG: Data too long for column 'interaction' at row 1
+End of Reported Error
+Start of Reported Error That Occured at Thu, 29 Sep 2022 21:34:58 GMT 
+Error: ER_DATA_TOO_LONG: Data too long for column 'interaction' at row 1
+End of Reported Error
+Start of Reported Error That Occured at Thu, 29 Sep 2022 21:35:00 GMT 
+Error: ER_DATA_TOO_LONG: Data too long for column 'interaction' at row 1
+End of Reported Error
+Start of Reported Error That Occured at Thu, 29 Sep 2022 21:35:04 GMT 
+Error: ER_DATA_TOO_LONG: Data too long for column 'interaction' at row 1
+End of Reported Error
+Start of Reported Error That Occured at Thu, 29 Sep 2022 21:35:22 GMT 
+Error: ER_DATA_TOO_LONG: Data too long for column 'interaction' at row 1
+End of Reported Error
+Start of Reported Error That Occured at Thu, 29 Sep 2022 21:39:14 GMT 
+Error: ER_DATA_TOO_LONG: Data too long for column 'interaction' at row 1
+End of Reported Error

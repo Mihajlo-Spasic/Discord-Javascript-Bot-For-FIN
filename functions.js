@@ -1,52 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
-const Database = require("@replit/database")
-const db = new Database()
-
-// const ExamChecker = require("../predmeti.js");
-
-// const { PythonShell } = require("python-shell");
-// Commented for the reason of changing the type of the project.
-
-// PythonShell.run("FINdata.py", null, function (err, results) {
-//   console.log(results);
-// });
-
-// Change Username/Password when initializing the project
-
-module.exports = {
-  // Slash Command for taking the time of the Exam
-  data: new SlashCommandBuilder()
-    .setName("dodaj_ispit")
-    .setDescription("Exams of the given year")
-    .addStringOption((option) =>
-      option
-        .setName("ispit")
-        .setDescription("Exam that is being added")
-        .setRequired(true)
-    )
-    .addStringOption((option) =>
-      option
-        .setName("vreme_ispita")
-        .setDescription("Time of the exam")
-        .setRequired(true)
-    ),
-
-  async execute(interaction) {
-    let NameOfExam = interaction.options.getString("ispit"); // User input lol
-    let TimeOfExam = interaction.options.getString("vreme_ispita"); // User input lol
-    db.set(NameOfExam, TimeOfExam).then(() => { });
-
-
-    // Offical Date YYYY-MM-DD
-    // Expected Date DD-MM-YYYY
-    // if (!dateIsValid(new Date(transformDate(TimeOfExam)))) return 0;
-
-
-    db.list().then(keys => console.log(keys))
-    db.get(NameOfExam).then(value => console.log(value));
-    await interaction.reply(`${examChecker(NameOfExam)}, ${TimeOfExam}`);
-  },
-};
+const fs = require("node:fs");
 
 function examChecker(GivenExam) {
   const Exam = [
@@ -110,3 +62,18 @@ function transformDate(date) {
 
   date = year + "-" + month + "-" + day;
 }
+
+function ErrorLogFile(error) {
+  const date = new Date();
+  fs.appendFile(
+    "ErrorLog.txt",
+    `Start of Reported Error That Occured at ${date.toGMTString()} \n` +
+      error.toString() +
+      `\nEnd of Reported Error\n`,
+    function (err) {
+      console.error(err);
+    }
+  );
+}
+
+module.exports = { examChecker, dateIsValid, transformDate, ErrorLogFile };
