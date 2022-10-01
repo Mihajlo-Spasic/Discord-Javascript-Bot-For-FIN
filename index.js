@@ -2,7 +2,12 @@ const fs = require("node:fs");
 const mysql = require("mysql");
 const path = require("node:path");
 const { ErrorLogFile } = require("./functions.js");
-const { Client, Collection, GatewayIntentBits } = require("discord.js");
+const {
+  Client,
+  Collection,
+  GatewayIntentBits,
+  Partials,
+} = require("discord.js");
 const { token, DBPassword } = require("./config.json");
 
 const DBconnection = mysql.createConnection({
@@ -11,7 +16,7 @@ const DBconnection = mysql.createConnection({
   password: DBPassword,
   database: "discordbot",
 });
-module.exports = { DBconnection };
+
 const { REST } = require("@discordjs/rest");
 
 // const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -40,7 +45,9 @@ const client = new Client({
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildScheduledEvents,
   ],
+  partials: [Partials.GuildMember],
 });
+module.exports = { client, DBconnection };
 const logs = require("discord-logs");
 logs(client, { debug: true });
 
@@ -71,15 +78,17 @@ for (const file of commandFiles) {
   client.commands.set(command.data.name, command);
 }
 
+// Events
+// Guild Member = Server User
 client.on("guildMemberRoleRemove", async (member, role) => {
   data = {
     user: member.user.tag,
-    type: "Remove",
-    role: role.name,
+    type: "Remove Role",
+    event: role.name + ` | Role Removed`,
     date: new Date(),
   };
   DBconnection.query(
-    "INSERT INTO member_roles_logs SET ?",
+    "INSERT INTO user_logs SET ?",
     data,
     function (error, result) {
       if (error) {
@@ -92,12 +101,12 @@ client.on("guildMemberRoleRemove", async (member, role) => {
 client.on("guildMemberRoleAdd", async (member, role) => {
   data = {
     user: member.user.tag,
-    type: "Add",
-    role: role.name,
+    type: "Add Role",
+    event: role.name + ` | Role Added`,
     date: new Date(),
   };
   DBconnection.query(
-    "INSERT INTO member_roles_logs SET ?",
+    "INSERT INTO user_logs SET ?",
     data,
     function (error, result) {
       if (error) {
@@ -107,11 +116,6 @@ client.on("guildMemberRoleAdd", async (member, role) => {
     }
   );
 });
-client.on("guildMemberSpeaking", async (member, speaking) => {
-  console.log("????????");
-  console.log(`a guild member starts/stops speaking: ${member.tag}`);
-});
-
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
@@ -128,6 +132,59 @@ client.on("interactionCreate", async (interaction) => {
       ephemeral: true,
     });
   }
+});
+client.on("guildMemberUpdate", async (oldMember, newMember) => {
+  data = {
+    user: newMember.user.username,
+    old_nickname: oldMember.nickname,
+    new_nickname: newMember.nickname,
+    date: new Date(),
+  };
+  DBconnection.query(
+    `INSERT INTO user_nickname SET ? `,
+    data,
+    function (error, result) {
+      if (error) ErrorLogFile(error);
+    }
+  );
+});
+client.on("guildMemberAdd", async (member) => {
+  if (member.user.bot) return;
+  data = {
+    user: member.user.tag,
+    type: "> None",
+    event: "User Joined Server",
+    date: new Date(),
+  };
+  DBconnection.query(
+    `INSERT INTO user_logs SET ?`,
+    data,
+    function (error, result) {
+      if (error) {
+        ErrorLogFile(error);
+        console.error(error);
+      }
+    }
+  );
+});
+client.on("guildMemberRemove", async (member) => {
+  if (member.user.bot) return;
+  data = {
+    user: member.user.tag,
+    type: "< None",
+    event: "User Left Server",
+    date: new Date(),
+  };
+  DBconnection.query(
+    `INSERT INTO user_logs SET ?`,
+    data,
+    function (error, result) {
+      if (error) {
+        ErrorLogFile(error);
+        console.error(error);
+      }
+    }
+  );
 });
 
 client.login(token);

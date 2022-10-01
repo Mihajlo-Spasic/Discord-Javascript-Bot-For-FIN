@@ -75,5 +75,27 @@ function ErrorLogFile(error) {
     }
   );
 }
+//Unable to access keys of an object due to npm mysql limitations (or my knowledge)
+// function query(Action, TABLE, doSomething, ...rest) {
+//   data = {
+//     user: rest[0],
+//   };
+//   DBconnection.query(
+//     `${Action} ${TABLE} SET ?`,
+//     data,
+//     function (error, result, fields) {
+//       if (error) {
+//         ErrorLogFile(error);
+//         console.error(error);
+//       }
+//       doSomething();
+//     }
+//   );
+// }
 
-module.exports = { examChecker, dateIsValid, transformDate, ErrorLogFile };
+module.exports = {
+  examChecker,
+  dateIsValid,
+  transformDate,
+  ErrorLogFile,
+};

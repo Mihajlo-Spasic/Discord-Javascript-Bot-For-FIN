@@ -19,3 +19,39 @@ End of Reported Error
 Start of Reported Error That Occured at Thu, 29 Sep 2022 21:39:14 GMT 
 Error: ER_DATA_TOO_LONG: Data too long for column 'interaction' at row 1
 End of Reported Error
+Start of Reported Error That Occured at Fri, 30 Sep 2022 05:05:44 GMT 
+Error: ER_DATA_TOO_LONG: Data too long for column 'interaction' at row 1
+End of Reported Error
+Start of Reported Error That Occured at Sat, 01 Oct 2022 11:36:00 GMT 
+Error: ER_NO_SUCH_TABLE: Table 'discordbot.member_roles_logs' doesn't exist
+End of Reported Error
+Start of Reported Error That Occured at Sat, 01 Oct 2022 11:36:00 GMT 
+Error: ER_NO_SUCH_TABLE: Table 'discordbot.user_nickname' doesn't exist
+End of Reported Error
+Start of Reported Error That Occured at Sat, 01 Oct 2022 11:36:03 GMT 
+Error: ER_DATA_TOO_LONG: Data too long for column 'type' at row 1
+End of Reported Error
+Start of Reported Error That Occured at Sat, 01 Oct 2022 11:36:03 GMT 
+Error: ER_NO_SUCH_TABLE: Table 'discordbot.user_nickname' doesn't exist
+End of Reported Error
+Start of Reported Error That Occured at Sat, 01 Oct 2022 11:39:41 GMT 
+Error: ER_NO_SUCH_TABLE: Table 'discordbot.member_roles_logs' doesn't exist
+End of Reported Error
+Start of Reported Error That Occured at Sat, 01 Oct 2022 11:39:41 GMT 
+Error: ER_NO_SUCH_TABLE: Table 'discordbot.user_nickname' doesn't exist
+End of Reported Error
+Start of Reported Error That Occured at Sat, 01 Oct 2022 11:39:41 GMT 
+Error: ER_NO_SUCH_TABLE: Table 'discordbot.user_nickname' doesn't exist
+End of Reported Error
+Start of Reported Error That Occured at Sat, 01 Oct 2022 11:40:10 GMT 
+Error: ER_NO_SUCH_TABLE: Table 'discordbot.user_nickname' doesn't exist
+End of Reported Error
+Start of Reported Error That Occured at Sat, 01 Oct 2022 11:40:11 GMT 
+Error: ER_NO_SUCH_TABLE: Table 'discordbot.user_nickname' doesn't exist
+End of Reported Error
+Start of Reported Error That Occured at Sat, 01 Oct 2022 11:41:09 GMT 
+Error: ER_BAD_FIELD_ERROR: Unknown column 'channel' in 'field list'
+End of Reported Error
+Start of Reported Error That Occured at Sat, 01 Oct 2022 11:41:43 GMT 
+Error: ER_BAD_FIELD_ERROR: Unknown column 'interaction' in 'field list'
+End of Reported Error

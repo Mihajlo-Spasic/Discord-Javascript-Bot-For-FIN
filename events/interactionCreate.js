@@ -6,14 +6,15 @@ module.exports = {
     console.log(
       `${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`
     );
+
     let post = {
       user: interaction.user.tag,
       channel: interaction.channel.name,
-      interaction: interaction,
+      interaction: interaction.commandName,
       date: new Date(),
     };
     DBconnection.query(
-      "INSERT INTO user_logs SET ?",
+      "INSERT INTO bot_interaction SET ?",
       post,
       function (error, result) {
         if (error) ErrorLogFile(error);
