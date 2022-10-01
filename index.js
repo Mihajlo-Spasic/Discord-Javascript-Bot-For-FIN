@@ -8,7 +8,7 @@ const {
   GatewayIntentBits,
   Partials,
 } = require("discord.js");
-const { token, DBPassword } = require("./config.json");
+// const { token, DBPassword } = require("./config.json");
 
 const DBconnection = mysql.createConnection({
   host: "localhost",
