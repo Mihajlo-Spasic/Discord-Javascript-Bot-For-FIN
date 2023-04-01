@@ -1,4 +1,4 @@
-# Discord-Javascript-Bot-For-FIN
+# Discord-Javascript-Bot-For-FIN  DEPRECATED 
 
 This bot is made only for the purpose of our faculty discord server 
 Currently works only for Replit and Replit included databases
